@@ -1,13 +1,32 @@
+@use './mixins' as *;
+
+@include font-face('Inter', '../fonts/Inter-VariableFont_opsz,wght');
+
 // basic variables
 $sticker-bg: #fff;
 $sticker-border: #e2e2e2;
-$sticker-shadow: 0 6px 20px rgba(0,0,0,0.12);
+$sticker-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 
-html,body,#app { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; }
+$font-base: 'Inter', sans-serif;
 
-a { color: #0b5cff; text-decoration: none; }
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  font-family: $font-base;
+}
 
-.page { max-width: 900px; margin: 0 auto; padding: 24px; }
+a {
+  color: #0b5cff;
+  text-decoration: none;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
 /* Sticker styles */
 .sticker-wrap {
@@ -27,7 +46,8 @@ a { color: #0b5cff; text-decoration: none; }
   background: $sticker-bg;
   border: 1px solid $sticker-border;
   box-shadow: $sticker-shadow;
-  transition: width 300ms cubic-bezier(.2,.9,.2,1), height 300ms, transform 200ms;
+  transition: width 300ms cubic-bezier(0.2, 0.9, 0.2, 1), height 300ms,
+    transform 200ms;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -87,17 +107,73 @@ a { color: #0b5cff; text-decoration: none; }
 
 /* closed/hide text when small */
 .sticker:not(.expanded) .sticker__header .sticker__title,
-.sticker:not(.expanded) .sticker__gallery { display: none; }
+.sticker:not(.expanded) .sticker__gallery {
+  display: none;
+}
 
 /* Hover lift */
-.sticker:hover { transform: translateY(-6px); }
+.sticker:hover {
+  transform: translateY(-6px);
+}
 
 /* Add subtle animation for images */
 .sticker__thumb {
   transform-origin: center;
   transition: transform 220ms;
 }
-.sticker__thumb:hover { transform: scale(1.05); }
+.sticker__thumb:hover {
+  transform: scale(1.05);
+}
 
 /* make sure sticker doesn't block the page scrolling */
-.sticker-wrap { pointer-events: auto; }
+.sticker-wrap {
+  pointer-events: auto;
+}
+
+.section__container {
+  display: flex;
+  flex-direction: column; // stack blocks vertically
+  gap: 24px; // replaces margin between blocks
+}
+
+.section__container__item {
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #4a90e2;
+  border-radius: 20px;
+
+  .section__container__item {
+  padding: 20px;
+  background: #fafafa;
+  border: 1px solid #4a90e2;
+  border-radius: 20px;
+
+  &--title {
+    position: relative; // needed for ::before positioning
+    display: flex;
+    align-items: center;
+    gap: 8px; // space between icon and text
+
+    font-weight: 500; // Medium
+    font-size: 20px;
+    line-height: 1.2;
+    color: #4a90e2;
+
+    &::before {
+      content: url('../icons/icon-task.png');
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      transform: translate(-5px, -8px);
+    }
+  }
+
+  &--desc {
+    font-family: Inter, sans-serif;
+    font-weight: 400; // Regular
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+}
