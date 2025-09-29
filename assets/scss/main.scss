@@ -1,0 +1,103 @@
+// basic variables
+$sticker-bg: #fff;
+$sticker-border: #e2e2e2;
+$sticker-shadow: 0 6px 20px rgba(0,0,0,0.12);
+
+html,body,#app { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; }
+
+a { color: #0b5cff; text-decoration: none; }
+
+.page { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+/* Sticker styles */
+.sticker-wrap {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  pointer-events: auto;
+}
+
+.sticker {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: $sticker-bg;
+  border: 1px solid $sticker-border;
+  box-shadow: $sticker-shadow;
+  transition: width 300ms cubic-bezier(.2,.9,.2,1), height 300ms, transform 200ms;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Expanded */
+.sticker.expanded {
+  width: 320px;
+  height: 380px;
+  border-radius: 16px;
+}
+
+/* Inner content */
+.sticker__mini {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.sticker__header {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid $sticker-border;
+}
+
+.sticker__title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.sticker__gallery {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 8px;
+  align-content: start;
+  overflow: hidden;
+}
+
+.sticker__thumbs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.sticker__thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid $sticker-border;
+}
+
+/* closed/hide text when small */
+.sticker:not(.expanded) .sticker__header .sticker__title,
+.sticker:not(.expanded) .sticker__gallery { display: none; }
+
+/* Hover lift */
+.sticker:hover { transform: translateY(-6px); }
+
+/* Add subtle animation for images */
+.sticker__thumb {
+  transform-origin: center;
+  transition: transform 220ms;
+}
+.sticker__thumb:hover { transform: scale(1.05); }
+
+/* make sure sticker doesn't block the page scrolling */
+.sticker-wrap { pointer-events: auto; }

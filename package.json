@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-sticker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "lint": "eslint --ext .js,.ts,.vue . || true"
+  },
+ "dependencies": {
+  "nuxt": "^3.14.159",
+  "vue": "^3.3.0"
+},
+
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "eslint": "^8.0.0",
+    "sass": "^1.60.0",
+    "typescript": "^5.0.0"
+  }
+}
