@@ -99,3 +99,5 @@ API_KEY=your_api_key_here
 - `.nuxt/` and `.output/` are ignored in Git
 - Ready for SSR deployment on Vercel
 
+## deploy run
+https://sticker-chi.vercel.app/
